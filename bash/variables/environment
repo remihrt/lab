@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Local variable - only in current shell
+local_var="I'm local"
+
+# Environment variable - inherited by child processes
+export ENV_VAR="I'm exported"
+

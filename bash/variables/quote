@@ -1,0 +1,30 @@
+#!/bin/bash
+
+name="World"
+
+# Variable expand
+echo "Hello, $name"
+
+# Everything literal
+echo 'Hello, $name'
+
+message="Hello    world"
+
+# Multiple spaces removed
+echo $message
+
+# All spaces preserved
+echo "$message"
+
+# Danger Demo
+
+# Create a file with spaces
+file="my important file.txt"
+touch "$file"
+
+# Tries to delete "my", "important" and "file.txt"
+rm $file
+
+# Use double quotes
+rm "$file"
+

@@ -1,0 +1,17 @@
+
+#!/bin/bash
+
+# WRONG - bash thinks "name" is a commmand
+
+# CORRECT
+name="DevOps"
+
+echo $name
+echo ${name}
+
+# Prints nothing
+echo "$nameEngineer"
+
+# Braces make it clear
+echo "${name}Engineer"
+
