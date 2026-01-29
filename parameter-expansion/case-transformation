@@ -1,0 +1,14 @@
+#!/bin/bash
+
+name="hello world"
+echo "${name^}"
+# Hello world
+echo "${name^^}"
+# HELLO WORLD
+
+name="HELLO WORLD"
+echo "${name,}"
+#hELLO WORLD
+echo "${name,,}"
+# hello world
+

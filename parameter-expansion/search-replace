@@ -1,0 +1,19 @@
+#!/bin/bash
+
+text="hello world world"
+
+# Replace first match
+echo "${text/world/bash}"
+# hello bash world
+
+# Replace all matches
+echo "${text//world/bash}"
+# hello bash bash
+
+# Delete (replace with nothing)
+echo "${text// /}"
+# helloworldworld
+
+# Display PATH with new lines
+echo "${PATH//:/$'\n'}"
+

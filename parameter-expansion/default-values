@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Use default if variable is empty or unset
+name=""
+echo "Hello, ${name:-User}"
+echo "Name: $name"
+# Hello, User
+
+# Set the variable if unset or empty
+name=""
+echo "${name:=User}"
+echo "Name: $name"
+# Now $name contains "User"
+
+# Practical use with script arguments
+name="${1:-world}"
+log_level="${LOG_LEVEL:-info}"
+echo "Hello, $name (log: $log_level)"
+

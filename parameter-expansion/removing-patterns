@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Remove suffix
+filename="document.txt"
+echo "${filename%.txt}"
+
+filepath="backup.2024.tar.gz"
+echo "${filepath%.*}"
+# Shortest match: backup.2024.tar
+echo "${filepath%%.*}"
+# Longest match: backup
+
+# Remove prefix
+filepath="/home/user/document.txt"
+echo "${filepath#*/}"
+# Shortest match: home/user/document.txt
+echo "${filepath##*/}"
+# Longest match: document.txt
+
+# Pratical use with file parts
+filepath="/home/user/report.tar.gz"
+echo "$filepath"
+filename="${filepath##*/}"
+echo "$filename"
+# report.tar.gz
+directory="${filepath%/*}"
+echo "$directory"
+# /home/user
+extension="${filename##*.}"
+echo "$extension"
+# gz
+basename="${filename%%.*}"
+echo "$basename"
+# report
+

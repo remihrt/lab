@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# sed - search and replace
+echo "hello" | sed 's/hello/hi/'
+
+# awk - extract fields
+echo "one two three" | awk '{print $2}'
+
+# tr - translate characters
+echo "hello" | tr 'a-z' 'A-Z'
+
+# cut - extract colums
+echo "a:b:c" | cut -d: -f2
+
+# Better approach in bash
+
+# External command (spawns new process)
+filename=$(echo "document.txt" | sed 's/.txt//')
+echo $filename
+
+# Parameter expansion (built-in, faster)
+filename="document.txt"
+echo "${filename%.txt}"
+
