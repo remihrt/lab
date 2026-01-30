@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Description: List all dotfiles
+
+directory=~/dotfiles
+
+if [[ ! -d "$directory" ]]; then
+    echo "$directory directory do not exist"
+    exit 1
+fi
+
+for file in "$directory"/*; do
+    [[ -f "$file" ]] || continue
+    echo "$file"
+done
+
