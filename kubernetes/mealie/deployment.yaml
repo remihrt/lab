@@ -20,3 +20,10 @@ spec:
           name: nginx
           ports:
             - containerPort: 9000
+          volumeMounts:
+            - mountPath: /app/data/
+              name: mealie-volume
+      volumes:
+        - name: mealie-volume
+          persistentVolumeClaim:
+            claimName: mealie-data
