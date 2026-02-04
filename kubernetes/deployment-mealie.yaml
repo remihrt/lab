@@ -16,7 +16,7 @@ spec:
         app: mealie
     spec:
       containers:
-        - image: ghcr.io/mealie-recipes/mealie:v1.2.0
+        - image: ghcr.io/mealie-recipes/mealie:v3.10.1
           name: nginx
           ports:
             - containerPort: 9000
