@@ -1,6 +1,6 @@
 ## Create the bootable USB drive
 
-###### Download the ISO
+##### Download the ISO
 
 broadcom kernel module is need to be able to enable WiFi.
 
@@ -8,7 +8,7 @@ An ISO image with the necessary modules can be build using [this repo](https://g
 
 You can download a prebuilt ISO [here](https://drive.google.com/uc?export=download&id=1T7eOPBnpQysCpjo_9NMvmkim7hK84Oin).
 
-###### Find the USB device
+##### Find the USB device
 
 macOS:
 ```
@@ -27,16 +27,17 @@ sudo dd if=archlinux-BCM4360_SUPPORT.iso of=/dev/sdX bs=1M status=progress && sy
 
 ## Boot the USB
 
-Plug the USB drive into the MacBook, power it and hold alt/option key.
+Plug the USB drive into the MacBook, power it and hold alt/option key.  
 Choose EFI (the icon that represent an external orange drive).
 
 ## Installation
 
-###### Keyboard layout
+##### Keyboard layout
 
-I have an U.S. English keyboard, so I have nothing to do.
-You may need to do the step 1.5 of the [installation guide](https://wiki.archlinux.org/title/Installation_guide).
-###### Connect to internet
+U.S. English keyboard? Nothing to do.  
+Otherwise, you may need to do the step 1.5 of the [installation guide](https://wiki.archlinux.org/title/Installation_guide).
+
+##### Connect to internet
 
 ```
 iwctl
@@ -62,15 +63,15 @@ Connect to the SSID:
 station wlan0 connect SSID
 ```
 
-###### Update the system clock
+##### Update the system clock
 
 ```
 timedatectl
 ```
 
-###### Partitioning the disk
+##### Partitioning the disk
 
-I'm assuming that you only want Arch Linux.
+I'm assuming that you only want Arch Linux.  
 **This will wipe out the entire disk.**
 
 Display devices:
@@ -98,12 +99,12 @@ First make sure to create a fresh GPT:
 gdisk /dev/sda
 ```
 
-o → create new GPT partition table
-n → new partition, 1 (sda1), default start (press enter), +1G, type EF00
-n → new partition, 2 (sda2), default start (press enter), rest of the disk space (press enter), type 8309 (Linux LUKS)
+o → create new GPT partition table  
+n → new partition, 1 (sda1), default start (press enter), +1G, type EF00  
+n → new partition, 2 (sda2), default start (press enter), rest of the disk space (press enter), type 8309 (Linux LUKS)  
 w → write to disk, confirm with y
 
-###### Format partitions
+##### Format partitions
 
 Format EFI:
 ```
@@ -179,10 +180,10 @@ mount --mkdir /dev/vg0/home /mnt/home
 swapon /dev/vg0/swap
 ```
 
-###### fstab
+##### fstab
 
 
-###### Installing Arch Linux
+##### Installing Arch Linux
 
 ```
 pacstrap /mnt base linux linux-headers linux-firmware intel-ucode lvm2 broadcom-wl-dkms sudo vim iwd
@@ -203,7 +204,7 @@ Enter in the new installed system:
 arch-chroot /mnt
 ```
 
-###### Locale
+##### Locale
 
 ```
 vim /etc/locale.gen
@@ -225,7 +226,7 @@ And set your hostname:
 echo "yourhostname" > /etc/hostname
 ```
 
-###### Networking
+##### Networking
 
 Edit network config:
 ```
@@ -257,13 +258,13 @@ Enable iwd:
 systemctl enable iwd
 ```
 
-###### Set bigger font for disk decryption passphrase
+##### Set bigger font for disk decryption passphrase
 
 ```
 echo "FONT=latarcyrheb-sun32" > /etc/vconsole.conf
 ```
 
-###### mkinitcpio
+##### mkinitcpio
 
 ```
 vim /etc/mkinitcpio.conf
@@ -279,7 +280,7 @@ Check that everything is good (might have some warnings):
 mkinitcpio -P
 ```
 
-###### Bootloader
+##### Bootloader
 
 Exit arch-chroot:
 ```
@@ -313,7 +314,7 @@ Get /dev/sda2 UUID:
 ```
 blkid -s UUID -o value /dev/sda2
 ```
-*hint: you can also run this command directly in vim* with `:r!<command_above>`
+*hint: you can also run this command directly in vim with* `:r!<command_above>`
 
 ```
 vim /boot/loader/entries/arch.conf
@@ -327,13 +328,13 @@ initrd  /initramfs-linux.img
 options rd.luks.name=<uuid-of-sda2>=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rw
 ```
 
-###### Set up root password
+##### Set up root password
 
 ```
 passwd
 ```
 
-###### REBOOT!!!
+##### REBOOT!!!
 
 ```
 exit
@@ -343,5 +344,5 @@ exit
 reboot
 ```
 
-Congratulations! You have completed the Arch Linux installation.
+Congratulations! You have completed the Arch Linux installation.  
 Your old MacBook will have a second life.
