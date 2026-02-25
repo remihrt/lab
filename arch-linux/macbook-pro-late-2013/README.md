@@ -180,9 +180,6 @@ mount --mkdir /dev/vg0/home /mnt/home
 swapon /dev/vg0/swap
 ```
 
-##### fstab
-
-
 ##### Installing Arch Linux
 
 ```
@@ -204,7 +201,17 @@ Enter in the new installed system:
 arch-chroot /mnt
 ```
 
-##### Locale
+##### Time
+
+```
+ln -sf /usr/share/zoneinfo/<Area>/<Location> /etc/localtime
+```
+
+```
+hwclock --systohc
+```
+
+##### Localization
 
 ```
 vim /etc/locale.gen
@@ -235,7 +242,7 @@ vim /etc/systemd/network/25-wireless.network
 
 Add this content:
 ```
-[Math]
+[Match]
 Name=wlan0
 
 [Network]
@@ -250,7 +257,7 @@ systemctl enable systemd-networkd.service
 
 Enable systemd-resolved:
 ```
-systemctl enable sytemd-resolved.service
+systemctl enable systemd-resolved.service
 ```
 
 Enable iwd:
